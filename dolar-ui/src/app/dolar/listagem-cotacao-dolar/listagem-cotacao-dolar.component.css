@@ -1,0 +1,49 @@
+label {
+  font-weight: bold;
+}
+
+.container-geral {
+  margin-top: 1.5rem;
+}
+
+.container-formulario-pesquisa {
+  margin: 0 0 2rem 0;
+}
+
+.titulo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.ate {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-listar {
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.campo-tabela {
+  font-size: 1.05rem;
+}
+
+.campo-positivo {
+  color: var(--verde);
+}
+
+.campo-negativo {
+  color: var(--vermelho);
+}
+
+@media screen and (min-width: 767px) {
+  .ate {
+    margin-top: 1.75rem;
+  }
+}
+

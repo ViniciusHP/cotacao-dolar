@@ -1,0 +1,81 @@
+### Back-end ###
+
+dolar-api/HELP.md
+dolar-api/target/
+!**/.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+dolar-api/.apt_generated
+dolar-api/.classpath
+dolar-api/.factorypath
+dolar-api/.project
+dolar-api/.settings
+dolar-api/.springBeans
+dolar-api/.sts4-cache
+
+### IntelliJ IDEA ###
+dolar-api/.idea
+dolar-api/*.iws
+dolar-api/*.iml
+dolar-api/*.ipr
+
+### NetBeans ###
+dolar-api/nbproject/private/
+dolar-api/nbbuild/
+dolar-api/dist/
+dolar-api/nbdist/
+dolar-api/.nb-gradle/
+dolar-api/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+dolar-api/.vscode/
+
+### Front-end ###
+
+# compiled output
+dolar-ui/dist
+dolar-ui/tmp
+dolar-ui/out-tsc
+# Only exists if Bazel was run
+dolar-ui/bazel-out
+
+# dependencies
+dolar-ui/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+
+# IDEs and editors
+dolar-ui/.idea
+dolar-ui/.project
+dolar-ui/.classpath
+dolar-ui/.c9/
+dolar-ui/*.launch
+dolar-ui/.settings/
+dolar-ui/*.sublime-workspace
+
+# IDE - VSCode
+dolar-ui/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+dolar-ui/.history/*
+
+# misc
+dolar-ui/.sass-cache
+dolar-ui/connect.lock
+dolar-ui/coverage
+dolar-ui/libpeerconnection.log
+dolar-ui/npm-debug.log
+dolar-ui/yarn-error.log
+dolar-ui/testem.log
+dolar-ui/typings
+
+# System Files
+.DS_Store
+Thumbs.db

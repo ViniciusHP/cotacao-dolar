@@ -1,0 +1,71 @@
+<div class="container-geral card">
+  <div class="container-formulario-pesquisa">
+    <h2 class="titulo">Listar Cotações do Dólar no Período: </h2>
+    <form #formulario="ngForm" (ngSubmit)="pesquisar(formulario)">
+      <div class="p-formgrid p-grid p-fluid p-ai-start p-jc-start">
+        <div class="p-field p-col-12 p-md-4">
+          <label for="data-inicial">Data inicial</label>
+          <p-calendar placeholder="DD/MM/AAAA" dateFormat="dd/mm/yy" [showIcon]="true" id="data-inicial"
+            ngModel name="data-inicial" [required]="true" #dataInicial="ngModel"></p-calendar>
+          <small *ngIf="isCampoInvalido(formulario.getControl(dataInicial))" class="p-error">A Data Inicial é obrigatória.</small>
+        </div>
+        <span class="ate">até</span>
+        <div class="p-field p-col-12 p-md-4">
+          <label for="data-final">Data final</label>
+          <p-calendar placeholder="DD/MM/AAAA" dateFormat="dd/mm/yy" [showIcon]="true" id="data-final"
+            ngModel name="data-final" [required]="true" #dataFinal="ngModel"></p-calendar>
+          <small *ngIf="isCampoInvalido(formulario.getControl(dataFinal))" class="p-error">A Data Final é obrigatória.</small>
+        </div>
+        <div class="btn-listar p-field p-col-12 p-md-3 p-lg-2 ai-self-end">
+          <button class="p-button-info" role="button" type="submit"
+            label="Listar" icon="pi pi-search" pButton pRipple
+            [disabled]="formulario.invalid || carregandoRegistros" ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="container-tabela">
+    <!-- Início Componente Tabela -->
+    <p-table styleClass="p-datatable-striped" selectionMode="single"
+    [value]="listagemCotacaoDolar" (onLazyLoad)="pesquisarComLazyLoad($event)"
+    [lazy]="lazyLoadAtivado" [paginator]="true" [rows]="numeroDeLinhasDeRegistros"
+    [totalRecords]="quantidadeTotalDeRegistros" [loading]="carregandoRegistros">
+      <ng-template pTemplate="header">
+          <tr>
+              <th scope="col" class="coluna-cabecalho p-text-left">Data e Hora</th>
+              <th scope="col" class="coluna-cabecalho p-text-center">Valor</th>
+              <th scope="col" class="coluna-cabecalho p-text-right">Diferença</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cotacao>
+          <tr>
+              <td class="p-text-left campo-tabela">
+                <span class="p-column-title p-text-bold">Data e Hora</span>
+                <span>{{cotacao.data | date: 'dd/MM/yyyy - HH:mm:ss'}}</span>
+                
+              </td>
+              <td class="p-text-center campo-tabela">
+                <span class="p-column-title p-text-bold">Valor</span>
+                {{cotacao.valor | currency: 'BRL':'symbol'}}
+              </td>
+              <td class="p-text-right campo-tabela">
+                <span class="p-column-title p-text-bold">Diferença</span>
+                <span [class]="cotacao.diferenca > 0 ? 'campo-positivo' : (cotacao.diferenca < 0 ? 'campo-negativo' : '')">
+                  <i class="pi pi-angle-down" *ngIf="cotacao.diferenca < 0"></i>
+                  <i class="pi pi-angle-up" *ngIf="cotacao.diferenca > 0"></i>
+                  {{cotacao.diferenca | number: '1.2-2'}}
+                </span>
+              </td>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+            <td [attr.colspan]="3" class="p-text-center">
+                Nenhuma cotação para ser exibida.
+            </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <!-- Fim Componente Tabela -->
+  </div>
+</div>

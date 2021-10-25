@@ -1,0 +1,8 @@
+origem-permitida: http://localhost:4200
+
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
