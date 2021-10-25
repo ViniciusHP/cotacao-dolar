@@ -39,6 +39,9 @@ Antes de iniciar é necessário que você já tenha a ferramenta [Git](https://g
 ```bash
 # Clone este repositório
 $ git clone https://github.com/ViniciusHP/desafio-cotacao-dolar.git
+
+# Acesse a pasta deste projeto por meio do terminal
+$ cd desafio-cotacao-dolar
 ```
 
 # **Back-End**
