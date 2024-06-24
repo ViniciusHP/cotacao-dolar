@@ -23,9 +23,9 @@ API desenvolvida em Spring Boot para cotação do dólar. Foi utilizado a API ex
 
 ### Pré-requisitos
 
-- Java 11 ou versões superiores ( versão utilizada: 14.0.1 );
+- Java 22
 - Maven ( utilizei o Maven Wrapper que vem com o Spring )
-- PostgreSQL ( versão utilizada: 14.0-1 )
+- PostgreSQL ( versão utilizada: 16.3 )
 
 No banco de dados PostgreSQL, crie um DATABASE chamado `dolar-api`. No script a seguir, foi criado com o usuário padrão `postgres`:
 

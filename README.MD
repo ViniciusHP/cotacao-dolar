@@ -52,9 +52,9 @@ API desenvolvida em Spring Boot para cotação do dólar. Foi utilizada a API ex
 
 ### Pré-requisitos back-end
 
-- Java 11 ou versões superiores ( versão utilizada: 14.0.1 )
+- Java 22
 - Maven ( utilizei o Maven Wrapper que vem com o Spring )
-- PostgreSQL ( versão utilizada: 14.0-1 )
+- PostgreSQL ( versão utilizada: 16.3 )
 
 No banco de dados PostgreSQL, crie um DATABASE chamado `dolar-api`. No script a seguir, foi criado com o usuário padrão `postgres`:
 
@@ -255,9 +255,9 @@ Front-end desenvolvido em Angular para consumo da API desenvolvida em Spring Boo
 
 ### Pré-requisitos front-end
 
-- NodeJS ( versão utilizada: 14.17.0 )
-- Npm ( versão utilizada: 7.16.0 )
-- Angular CLI ( versão utilizada: 12.0.5 )
+- NodeJS ( versão utilizada: 18.20.3 )
+- Npm ( versão utilizada: 10.7.0 )
+- Angular CLI ( versão utilizada: 17.3.8 )
 
 ### Instruções adicionais front-end
 
