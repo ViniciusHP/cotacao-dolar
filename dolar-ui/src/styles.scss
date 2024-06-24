@@ -1,0 +1,169 @@
+:root {
+    --cor-destaque: #0288d1;
+    --verde: #20c634;
+    --vermelho: #d5150b;
+
+    --fonte: 'Quicksand', var(--font-family);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--surface-b);
+    font-family: var(--fonte);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 970px;
+}
+
+.card {
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    background-color: white;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-left: 5px solid var(--cor-destaque);
+}
+
+/* Alterando tamanho da fonte da mensagem de erro no campo do formulário */
+.p-error {
+    font-size: 0.9rem;
+}
+
+/* Alterando estilo do input de texto */
+.p-inputtext {
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Alterando fonte dos componentes do primeng */
+.p-calendar .p-component,
+.p-datepicker .p-component,
+.p-datatable.p-component,
+.p-button.p-component,
+.p-toast.p-component {
+    font-family: var(--fonte);
+}
+
+/* Botões normais */
+.p-button.p-component {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.p-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+/* Botão do calendário */
+.p-calendar.p-calendar-w-btn .p-button-icon-only {
+    background-color: var(--cor-destaque);
+}
+
+/* Ícone dos botões */
+.p-button .p-button-icon-left {
+    margin-right: 0.5rem;
+}
+
+/* Cabeçalho da tabela */
+.p-datatable .p-datatable-thead .coluna-cabecalho {
+    background-color: var(--cor-destaque);
+    color: white;
+    width: 300px;
+    text-transform: uppercase;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    border-width: 0 0 1px;
+    padding: 1rem;
+}
+
+.p-datatable-thead tr > th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.p-datatable-thead tr > th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.p-paginator.p-component {
+    border-bottom: 1px solid var(--cor-destaque);
+}
+
+/* Tabela */
+.p-datatable .p-datatable-thead > tr > th {
+    padding: 1rem;
+    font-weight: 600;
+}
+
+.p-paginator {
+    padding: 0.5rem 1rem;
+}
+
+.p-toast-message-content {
+    padding: 1rem;
+}
+
+.p-toast-message-icon {
+    margin-right: 1rem;
+}
+
+/* Alterado calendário do datepicker */
+.p-datepicker-header {
+    padding: 0.5rem;
+    font-weight: 600;
+}
+
+.p-datepicker-month {
+    margin-right: 0.5rem;
+}
+
+.p-datepicker {
+    padding: 0.5rem;
+}
+
+.p-datepicker table td,
+.p-datepicker table th {
+    padding: 0.5rem;
+}
+
+.p-datepicker-calendar {
+    font-size: 1rem;
+    margin: 0.5rem 0px;
+}
+
+.p-datepicker-month,
+.p-datepicker-year {
+    font-size: 1rem;
+    font-family: var(--fonte);
+}
+
+/* alterado tamanho do toast para telas pequenas */
+@media screen and (max-width: 433px) {
+    .p-toast.p-component {
+        max-width: 300px;
+    }
+}

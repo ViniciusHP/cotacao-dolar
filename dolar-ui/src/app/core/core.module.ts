@@ -4,8 +4,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeBr from '@angular/common/locales/pt';
 
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
@@ -15,33 +15,28 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 registerLocaleData(localeBr, 'pt');
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+    return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    HttpClientModule,
+    declarations: [],
+    imports: [
+        CommonModule,
+        HttpClientModule,
 
-    MessagesModule,
-    MessageModule,
-    ToastModule,
+        MessagesModule,
+        MessageModule,
+        ToastModule,
 
-    TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        }
-    })
-  ],
-  exports: [
-    ToastModule
-  ],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'pt' },
-    MessageService
-  ]
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+    ],
+    exports: [ToastModule],
+    providers: [{ provide: LOCALE_ID, useValue: 'pt' }, MessageService],
 })
-export class CoreModule { }
+export class CoreModule {}

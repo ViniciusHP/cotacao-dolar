@@ -1,15 +1,19 @@
 <div class="cotacao-atual-dolar card">
-  <span class="titulo">Cotação Atual do Dólar</span>
-  <div class="informacoes">
-    <div class="informacao valor">
-      <i class="pi pi-chart-line"></i>
-      <span *ngIf="cotacaoDolarAtual">{{ cotacaoDolarAtual.valor | currency: 'BRL'}}</span>
-      <span *ngIf="!cotacaoDolarAtual">R$ -,--</span>
+    <span class="titulo">Cotação Atual do Dólar</span>
+    <div class="informacoes">
+        <div class="informacao valor">
+            <i class="pi pi-chart-line"></i>
+            <span *ngIf="cotacaoDolarAtual">{{
+                cotacaoDolarAtual.valor | currency: 'BRL'
+            }}</span>
+            <span *ngIf="!cotacaoDolarAtual">R$ -,--</span>
+        </div>
+        <div class="informacao data">
+            <i class="pi pi-clock"></i>
+            <span *ngIf="cotacaoDolarAtual">{{
+                cotacaoDolarAtual.data | date: 'dd/MM/yyyy - HH:mm:ss'
+            }}</span>
+            <span *ngIf="!cotacaoDolarAtual">--/--/---- - --:--:--</span>
+        </div>
     </div>
-    <div class="informacao data">
-      <i class="pi pi-clock"></i>
-      <span *ngIf="cotacaoDolarAtual">{{ cotacaoDolarAtual.data | date:'dd/MM/yyyy - HH:mm:ss' }}</span>
-      <span *ngIf="!cotacaoDolarAtual">--/--/---- - --:--:--</span>
-    </div>
-  </div>
 </div>
