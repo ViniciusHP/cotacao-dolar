@@ -23,7 +23,7 @@ public interface AwesomeApiClient {
     @RequestMapping( method = RequestMethod.GET, value = "last/USD-BRL")
     CotacaoDolarWrapperAwesomeApi ultimaCotacaoDolar();
 
-    @RequestMapping( method = RequestMethod.GET, value = "/USD-BRL/{quantidade}?start_date={dataInicial}&end_date=${dataFinal}")
+    @RequestMapping( method = RequestMethod.GET, value = "/USD-BRL/{quantidade}?start_date={dataInicial}&end_date={dataFinal}")
     List<CotacaoInfoDTO> listagemCotacoesDolarNoPeriodo(
             @PathVariable( value = "quantidade") Integer quantidade,
             @RequestParam(value = "dataInicial") @DateTimeFormat( pattern = "yyyyMMdd" ) LocalDate dataInicial,

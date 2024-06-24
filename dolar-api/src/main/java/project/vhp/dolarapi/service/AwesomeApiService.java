@@ -1,5 +1,6 @@
 package project.vhp.dolarapi.service;
 
+import jakarta.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +12,11 @@ import project.vhp.dolarapi.model.CotacaoDolar;
 import project.vhp.dolarapi.repository.CotacaoDolarRepository;
 import project.vhp.dolarapi.service.client.AwesomeApiClient;
 
-import javax.annotation.PreDestroy;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Serviço para obtenção dos dados de cotação do AwesomeAPI
@@ -46,6 +41,7 @@ public class AwesomeApiService {
 
     /**
      * Obtém a cotação atual.
+     *
      * @return {@link CotacaoDolar} atual.
      */
     public CotacaoDolar obterCotacaoAtual() {
@@ -56,6 +52,7 @@ public class AwesomeApiService {
 
     /**
      * Executa listagem de cotações nas datas especificadas.
+     *
      * @param listaDeDatas datas das cotações.
      * @return {@link Map} contendo as datas como chaves e as listagens das cotações como valores.
      */
@@ -65,14 +62,14 @@ public class AwesomeApiService {
 
         // Mapeia as datas e as chamadas assíncronas para API externa
         Map<LocalDate, Future<List<CotacaoDolar>>> mapaDataEChamada = new HashMap<>();
-        for(LocalDate data : listaDeDatas){
+        for (LocalDate data : listaDeDatas) {
             Callable<List<CotacaoDolar>> chamada = () -> listarCotacaoDolarNoPeriodo(data, data);
             mapaDataEChamada.put(data, executorService.submit(chamada));
         }
 
         // Mapeia as datas e as listagens vindas das chamadas assíncronas
         Map<LocalDate, List<CotacaoDolar>> mapaDataECotacoes = new HashMap<>();
-        for(Map.Entry<LocalDate, Future<List<CotacaoDolar>>> dataEChamada: mapaDataEChamada.entrySet()) {
+        for (Map.Entry<LocalDate, Future<List<CotacaoDolar>>> dataEChamada : mapaDataEChamada.entrySet()) {
             try {
                 final LocalDate data = dataEChamada.getKey();
                 List<CotacaoDolar> cotacaoChamada = dataEChamada.getValue().get();
@@ -88,8 +85,9 @@ public class AwesomeApiService {
 
     /**
      * Executa listagem de cotação no período especificado.
+     *
      * @param dataInicial data de inicio do período.
-     * @param dataFinal data de fim do período.
+     * @param dataFinal   data de fim do período.
      * @return {@link List} contendo os dados de cotação do período especificado.
      */
     public List<CotacaoDolar> listarCotacaoDolarNoPeriodo(LocalDate dataInicial, LocalDate dataFinal) {

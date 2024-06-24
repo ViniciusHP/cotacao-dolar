@@ -1,5 +1,9 @@
 package project.vhp.dolarapi.repository.cotacao.dolar;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +13,6 @@ import org.springframework.data.domain.Pageable;
 import project.vhp.dolarapi.model.CotacaoDolar;
 import project.vhp.dolarapi.model.CotacaoDolar_;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Order;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -199,24 +194,26 @@ public class CotacaoDolarRepositoryImpl implements CotacaoDolarRepositoryQuery {
 
     /**
      * Método responsável por adicionar a restrição de período.
-     * @param root referência do tipo de entidade.
-     * @param builder componente utilizado para construir a restrição.
+     *
+     * @param root        referência do tipo de entidade.
+     * @param builder     componente utilizado para construir a restrição.
      * @param dataInicial data de início do período.
-     * @param dataFinal data de fim do período.
+     * @param dataFinal   data de fim do período.
      * @return {@link Predicate} contendo as restrições.
      */
     private Predicate adicionarRestricaoDePeriodo(Root<CotacaoDolar> root, CriteriaBuilder builder, LocalDate dataInicial, LocalDate dataFinal) {
         return builder.between(
                 root.get(CotacaoDolar_.dataCotacao),
-                dataInicial.atTime(0,0,0,0), // Meia noite da data inicial
-                dataFinal.atTime(23,59,59, 999) // Um segundo antes da meia noite da data final
+                dataInicial.atTime(0, 0, 0, 0), // Meia noite da data inicial
+                dataFinal.atTime(23, 59, 59, 999) // Um segundo antes da meia noite da data final
         );
     }
 
     /**
      * Método responsável por adicionar paginação dos resultados.
+     *
      * @param typedQuery consulta tipada.
-     * @param pageable objeto que contém as informações para paginação.
+     * @param pageable   objeto que contém as informações para paginação.
      */
     private void adicionarRestricoesDePaginacao(TypedQuery<CotacaoDolar> typedQuery, Pageable pageable) {
         int tamanhoDaPagina = pageable.getPageSize();
@@ -228,7 +225,8 @@ public class CotacaoDolarRepositoryImpl implements CotacaoDolarRepositoryQuery {
 
     /**
      * Método responsável por adicionar a restrição de ordenação decrescente a partir da data de cotação.
-     * @param root referência do tipo de entidade.
+     *
+     * @param root    referência do tipo de entidade.
      * @param builder componente utilizado para construir a restrição.
      * @return {@link Order} com as restrições de ordenação.
      */
@@ -238,15 +236,16 @@ public class CotacaoDolarRepositoryImpl implements CotacaoDolarRepositoryQuery {
 
     /**
      * Obtém objeto {@link Optional} com o resultado da query.
+     *
      * @param typedQuery Query com a consulta que pode retornar uma exceção por não obter resultado.
-     * @param <T> Tipo do dado que o {@link Optional} carrega.
+     * @param <T>        Tipo do dado que o {@link Optional} carrega.
      * @return {@link Optional} com o resultado da query.
      */
     private <T> Optional<T> obterResultadoComoOptional(TypedQuery<T> typedQuery) {
         Optional<T> optional = Optional.empty();
         try {
             optional = Optional.ofNullable(typedQuery.getSingleResult());
-        }catch (NoResultException exception) {
+        } catch (NoResultException exception) {
             logger.error("Exceção ao obter entidade na query.");
         }
         return optional;
