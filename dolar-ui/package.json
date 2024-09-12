@@ -6,7 +6,6 @@
         "start": "ng serve",
         "build": "ng build --configuration production",
         "watch": "ng build --watch --configuration development",
-        "server": "node server.js",
         "prettier": "prettier ./src --write",
         "eslint": "eslint ./src --max-warnings 0 --no-warn-ignored",
         "prepare": "husky"

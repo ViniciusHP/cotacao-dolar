@@ -1,0 +1,38 @@
+networks:
+  privada:
+  publica:
+
+services:
+  db:
+    image: postgres:16.3-alpine3.20
+    volumes:
+      - './data:/var/lib/postgresql/data'
+      - ./scripts/script-criacao-banco.sql:/docker-entrypoint-initdb.d/script-criacao-banco.sql
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    networks:
+      - privada
+    
+  frontend:
+    build: ./dolar-ui
+    environment:
+      - API_URL=api
+    ports:
+      - 4200:80
+    networks:
+      - publica
+      - privada
+    depends_on:
+      - backend
+
+  backend:
+    build: ./dolar-api
+    environment:
+      - ORIGEM_PERMITIDA=http://frontend
+      - DATASOURCE_URL=jdbc:postgresql://db/dolar-api
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=mysecretpassword
+    networks:
+      - privada
+    depends_on:
+      - db

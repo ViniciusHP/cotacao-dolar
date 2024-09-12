@@ -8,23 +8,25 @@
 
 # **Sumário**
 
-* [Sobre o projeto](#sobre-o-projeto)
-* [Clonando o projeto](#clonando-o-projeto)
-* [Back-End](#back-end)
-  * [Executando o back-end](#executando-o-back-end)
-    * [Pré-requisitos back-end](#pré-requisitos-back-end)
-    * [Instruções adicionais back-end](#instruções-adicionais-back-end)
-    * [Instruções de execução do back-end](#instruções-de-execução-do-back-end)
-  * [End-points](#end-points)
-    * [Cotação Atual](#cotação-atual)
-    * [Listagem no Período](#listagem-no-período)
-  * [Tecnologias back-end](#tecnologias-back-end)
-* [Front-End](#front-end)
-  * [Executando o front-end](#executando-o-front-end)
-    * [Pré-requisitos front-end](#pré-requisitos-front-end)
-    * [Instruções adicionais front-end](#instruções-adicionais-front-end)
-    * [Instruções de execução do front-end](#instruções-de-execução-do-front-end)
-  * [Tecnologias front-end](#tecnologias-front-end)
+- [**Sumário**](#sumário)
+- [**Sobre o projeto**](#sobre-o-projeto)
+- [**Clonando o projeto**](#clonando-o-projeto)
+- [**Back-End**](#back-end)
+  - [**Executando o back-end**](#executando-o-back-end)
+    - [Pré-requisitos back-end](#pré-requisitos-back-end)
+    - [Instruções adicionais back-end](#instruções-adicionais-back-end)
+    - [Instruções de execução do back-end](#instruções-de-execução-do-back-end)
+  - [**End-points**](#end-points)
+    - [Cotação Atual](#cotação-atual)
+    - [Listagem no Período](#listagem-no-período)
+  - [**Tecnologias back-end**](#tecnologias-back-end)
+- [**Front-end**](#front-end)
+  - [**Executando o front-end**](#executando-o-front-end)
+    - [Pré-requisitos front-end](#pré-requisitos-front-end)
+    - [Instruções adicionais front-end](#instruções-adicionais-front-end)
+    - [Instruções de execução do front-end](#instruções-de-execução-do-front-end)
+  - [**Tecnologias front-end**](#tecnologias-front-end)
+- [Docker](#docker)
 
 ---
 
@@ -65,6 +67,8 @@ create database "dolar-api"
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1;
 ```
+
+Esse script também está presente no arquivo `scripts/script-criacao-banco.sql`.
 
 ### Instruções adicionais back-end
 
@@ -293,3 +297,11 @@ Este projeto foi construído com as seguintes ferramentas/tecnologias:
 - **[PrimeFlex](https://primefaces.org/primeng/showcase/#/primeflex)**
 - **[PrimeNG](https://www.primefaces.org/primeng/)**
 - **[ngx-translate](http://www.ngx-translate.com/)**
+
+# Docker
+
+É possível subir todo ambiente do projeto a partir do docker-compose. Para isso utilize a instrução:
+
+```bash
+$ docker compose up --build
+```

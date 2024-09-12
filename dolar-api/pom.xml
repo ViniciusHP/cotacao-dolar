@@ -10,7 +10,7 @@
     </parent>
     <groupId>project.vhp</groupId>
     <artifactId>dolar-api</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>dolar-api</name>
     <description>Projeto de API para cotação do dólar</description>
     <properties>

@@ -8,6 +8,10 @@ const routes: Routes = [
         loadChildren: () =>
             import('./dolar/dolar.module').then((m) => m.DolarModule),
     },
+    {
+        path: '**',
+        redirectTo: '',
+    },
 ];
 
 @NgModule({
